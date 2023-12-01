@@ -1,34 +1,38 @@
 "use client"; // This is a client component
 
 import "./signup.css";
-import React, {useState} from "react";
+import React, {FormEvent, useState} from "react";
 
 export default function SignUp (){
-    /*const [email, setEmail] = useState("");
+    const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = async (e: { preventDefault: () => void; }) => {
-        e.preventDefault();
-    
-        const user = await fetch("../api/auth/signup", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, username, password}),
-        });
-      };*/
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+       e.preventDefault();
+       const formData = new FormData(e.currentTarget);
+       const response = await fetch ('/api/auth/signup', {
+              method: 'POST',
+              body: JSON.stringify({
+                     email: formData.get('email'),
+                     username: formData.get('username'),
+                     password: formData.get('password'),
+              }),
+       });
+       console.log({response});
+    };
 
     return (
     <main className="flex min-h-screen flex-col" style={{alignItems:"center", justifyContent:"center"}}>
         <div style={{display: "flex", flexDirection:"column", marginBottom: "20px" , width: "100px", height: "100px", backgroundColor: "red"}}>placeholder</div>
-        <form className="form" action="../api/signup" method="POST">
+        <form className="form" onSubmit={handleSubmit} method="POST">
             <label htmlFor="email" className="labels">Correo electrónico</label>
             <input className="textfields" 
                    type="email" 
                    id="email" 
                    name="email" 
+                   value={email} 
+                   onChange={(e) => setEmail(e.target.value)} 
                    required
             />
 
@@ -37,6 +41,8 @@ export default function SignUp (){
                    type="text" 
                    id="username" 
                    name="username" 
+                   value={username} 
+                   onChange={(e) => setUsername(e.target.value)} 
                    required
             />
 
@@ -46,14 +52,8 @@ export default function SignUp (){
                    id="password" 
                    name="password" 
                    minLength={8} 
-                   required
-            />
-
-            <label htmlFor="repeat-password" className="labels">Repetir contraseña</label>
-            <input className="textfields" 
-                   type="password" 
-                   id="repeat-password" 
-                   name="repeat-password"  
+                   value={password} 
+                   onChange={(e) => setPassword(e.target.value)} 
                    required
             />
 
