@@ -22,6 +22,5 @@ const { email, username, password } = schema.parse(await request.formData());
     return NextResponse.json({ error }, { status: 500 });
   }
  
-  const users = await sql`SELECT * FROM Users;`;
-  return NextResponse.json({ users }, { status: 200 });
+  //return NextResponse.json({ users }, { status: 200 });
 }
