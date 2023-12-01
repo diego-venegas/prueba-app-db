@@ -4,7 +4,7 @@ import "./signup.css";
 import React, {useState} from "react";
 
 export default function SignUp (){
-    const [email, setEmail] = useState("");
+    /*const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -18,19 +18,17 @@ export default function SignUp (){
           },
           body: JSON.stringify({ email, username, password}),
         });
-      };
+      };*/
 
     return (
     <main className="flex min-h-screen flex-col" style={{alignItems:"center", justifyContent:"center"}}>
         <div style={{display: "flex", flexDirection:"column", marginBottom: "20px" , width: "100px", height: "100px", backgroundColor: "red"}}>placeholder</div>
-        <form className="form" onSubmit={handleSubmit} method="POST">
+        <form className="form" action="../api/signup" method="POST">
             <label htmlFor="email" className="labels">Correo electrónico</label>
             <input className="textfields" 
                    type="email" 
                    id="email" 
                    name="email" 
-                   value={email} 
-                   onChange={(e) => setEmail(e.target.value)} 
                    required
             />
 
@@ -39,8 +37,6 @@ export default function SignUp (){
                    type="text" 
                    id="username" 
                    name="username" 
-                   value={username} 
-                   onChange={(e) => setUsername(e.target.value)} 
                    required
             />
 
@@ -50,8 +46,6 @@ export default function SignUp (){
                    id="password" 
                    name="password" 
                    minLength={8} 
-                   value={password} 
-                   onChange={(e) => setPassword(e.target.value)} 
                    required
             />
 
