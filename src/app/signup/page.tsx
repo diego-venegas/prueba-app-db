@@ -1,3 +1,5 @@
+"use client"; // This is a client component
+
 import "./signup.css";
 import React, {useState} from "react";
 
